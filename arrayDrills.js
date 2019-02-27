@@ -4,14 +4,14 @@ class Array {
   constructor(){
     this.length = 0;
     this._capacity = 0;
-    this.ptr = memory.allocate(this.length);
+    this.ptr = Memory.allocate(this.length);
   }
 
   push(value){
     if (this.length >= this._capacity) {
       this._resize((this.length + 1) * Array.SIZE_RATIO) ;
     }
-    memory.set(this.ptr + this.length, value);
+    Memory.set(this.ptr + this.length, value);
     this.length++;
   }
 
@@ -21,8 +21,8 @@ class Array {
     if (this.ptr === null) {
       throw new Error('Out of memory');
     }
-    memory.copy(this.ptr, oldPtr, this.length);
-    memory.free(oldPtr);
+    Memory.copy(this.ptr, oldPtr, this.length);
+    Memory.free(oldPtr);
     this._capacity = size;
   }
 
@@ -30,14 +30,14 @@ class Array {
     if(index < 0 || index >= this.length){
       throw new Error('Index Error');
     }
-    return memory.get(this.ptr + index);
+    return Memory.get(this.ptr + index);
   }
 
   pop(){
     if (this.length == 0) {
       throw new Error('Index error');
     }
-    const value = memory.get(this.ptr + this.length - 1);
+    const value = Memory.get(this.ptr + this.length - 1);
     this.length--;
     return value;
   }
@@ -51,7 +51,7 @@ class Array {
       this._resize((this.length + 1) * Array.SIZE_RATIO)
     }
 
-    memory.copy(this.ptr + index + 1, this.ptr + index, this.length - index)
+    Memory.copy(this.ptr + index + 1, this.ptr + index, this.length - index)
     memory.set(this.ptr + index, value);
     this.length++
   }
@@ -65,4 +65,3 @@ class Array {
   }
 }
 Array.SIZE_RATIO = 3;
-
