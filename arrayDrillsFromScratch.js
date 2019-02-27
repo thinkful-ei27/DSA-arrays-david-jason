@@ -37,7 +37,7 @@ class Array {
 
 
 }
-Array.SIZE_RATIO=3;
+
 
 function main(){
 
@@ -47,8 +47,8 @@ function main(){
   let arr = new Array();
 
   //add an item to the array
-  arr.push(3);
+  arr.push('tauhida');
 
-  console.log(arr);
+  console.log(get.arr[0]);
 }
 main();
