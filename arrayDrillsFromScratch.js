@@ -14,6 +14,26 @@ class Array {
     memory.set(this.ptr + this.length, value);
     this.length++;
   }
+
+  _resize(size) {
+    const oldPtr = this.ptr;
+    this.ptr = memory.allocate(size)
+    if (this.ptr === null) {
+      throw new Error('Out of memory');
+    }
+    memory.copy(this.ptr, oldPtr, this.length)
+    memory.free(oldPtr);
+    this._capacity = size;
+  }
+
+  get(index) {
+    if(index < 0 || index >= this.length){
+      throw new Error('Index Error');
+    }
+   return memory.get(ptr + index)
+  }
+
+
   
 }
 Array.SIZE_RATIO=3;
