@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import { Memory } from './memory'
-
-class Array {
-  constructor(){
-    this.length=0,
-    this._capacity=0,
-    this.ptr= Memory.allocate(this.length)
-=======
 const Memory = require('./memory.js');
 const memory = new Memory();
 
@@ -15,7 +6,6 @@ class Array {
     this.length = 0,
     this._capacity = 0,
     this.ptr = memory.allocate(this.length)
->>>>>>> 935a7bd12120122d46a9a2a1a3fec68df3e3be66
   }
 
   push(value){
@@ -44,9 +34,38 @@ class Array {
    return memory.get(this.ptr + index)
   }
 
+  pop() {
+  if (this.length == 0) {
+    throw new Error('Index error');
+  }
+  const value = memory.get(this.ptr + this.length - 1)
+  this.length--;
+  return value;
+  }
 
+  insert(index, value) {
+    if (index < 0 || index >= this.length) {
+      throw new Error('Index error')
+    }
 
+    if (this.length >= this._capacity) {
+      this._resize((this.length + 1) * Array.SIZE_RATIO)
+    }
+
+    memory.copy(this.ptr + index + 1, this.ptr + index, this.length - index)
+    memory.set(this.ptr + index, value);
+    this.length++
+  }
+
+  remove(index) {
+    if (index < 0 || index >= this.length) {
+      throw new Error('Index error')
+    }
+    memory.copy(this.ptr + index, this.ptr + index + 1, this.length - index - 1)
+    this.length--;
+  }
 }
+
 Array.SIZE_RATIO=3;
 
 function main(){
@@ -57,8 +76,9 @@ function main(){
   let arr = new Array();
 
   //add an item to the array
-  arr.push(3);
+  arr.push("Tahida");
+  console.log(arr.get(0))
 
-  console.log(arr);
+  //console.log(arr);
 }
 main();
