@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Memory } from './memory'
 
 class Array {
@@ -5,6 +6,16 @@ class Array {
     this.length=0,
     this._capacity=0,
     this.ptr= Memory.allocate(this.length)
+=======
+const Memory = require('./memory.js');
+const memory = new Memory();
+
+class Array {
+  constructor(){
+    this.length = 0,
+    this._capacity = 0,
+    this.ptr = memory.allocate(this.length)
+>>>>>>> 935a7bd12120122d46a9a2a1a3fec68df3e3be66
   }
 
   push(value){
@@ -30,10 +41,24 @@ class Array {
     if(index < 0 || index >= this.length){
       throw new Error('Index Error');
     }
-   return memory.get(ptr + index)
+   return memory.get(this.ptr + index)
   }
 
 
-  
+
 }
 Array.SIZE_RATIO=3;
+
+function main(){
+
+  Array.SIZE_RATIO = 3;
+
+  //create an instance of the array class
+  let arr = new Array();
+
+  //add an item to the array
+  arr.push(3);
+
+  console.log(arr);
+}
+main();
