@@ -61,6 +61,7 @@ class Array {
       throw new Error('Index error')
     }
     memory.copy(this.ptr + index, this.ptr + index + 1, this.length - index - 1)
+    this.length--;
   }
 }
 Array.SIZE_RATIO = 3;
