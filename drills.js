@@ -77,8 +77,22 @@ function removeChars(str1, str2){
   return temp;
 }
 
+function products(arr) {
+  let temp = [];
+  let total = 1;
+  for (let i = 0; i < arr.length; i++) {
+    total = total * arr[i]
+  }
+  for(let j = 0; j < arr.length; j++) {
+    temp.push(total/arr[j])
+  }
+  console.log(total)
+  return temp
+}
+
 // console.log(noSpace('The Wild Things'))
 //console.log(filterArray([1,2,3,4,5,6,7,8,9]))
 // console.log(maxSum([4,6,-3,5,-2,1]));
 //console.log(mergeArray([1, 3, 6, 8, 11], [2, 3, 5, 8, 9, 10]))
-console.log(removeChars("Battle of the Vowels: Hawaii vs. Grozny", 'aeiou'));
+// console.log(removeChars("Battle of the Vowels: Hawaii vs. Grozny", 'aeiou'));
+console.log(products([1,3,9,4]))
