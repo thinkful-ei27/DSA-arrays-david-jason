@@ -11,7 +11,7 @@ function noSpace(str){
  }
  return temp;}
 
- function filterArray(arr) {
+  function filterArray(arr) {
   let temp = []
   for(let i = 0; i < arr.length; i++) {
     if (arr[i] > 5) {
@@ -61,7 +61,24 @@ function noSpace(str){
   return temp;
 }
 
+function removeChars(str1, str2){
+  let temp = '';
+  for (let i = 0; i < str1.length; i++){
+    let count = 0;
+      for (let j = 0; j< str2.length; j++){ 
+        if (str1[i]=== str2[j]){
+          count++;
+        }        
+    }
+    if (count === 0){
+      temp = temp + str1[i]
+    }
+  }
+  return temp;
+}
+
 // console.log(noSpace('The Wild Things'))
 //console.log(filterArray([1,2,3,4,5,6,7,8,9]))
 // console.log(maxSum([4,6,-3,5,-2,1]));
-console.log(mergeArray([1, 3, 6, 8, 11], [2, 3, 5, 8, 9, 10]))
+//console.log(mergeArray([1, 3, 6, 8, 11], [2, 3, 5, 8, 9, 10]))
+console.log(removeChars("Battle of the Vowels: Hawaii vs. Grozny", 'aeiou'));
