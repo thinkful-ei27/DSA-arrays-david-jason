@@ -15,7 +15,7 @@ class Memory {
     return start;
   }
 
-  free(ptr) {}
+   free(ptr) {}
 
   copy(toIdx, fromIdx, size) {
     if (fromIdx === toIdx) {
@@ -43,5 +43,3 @@ class Memory {
     this.memory[ptr] = value;
   }
 }
-
-module.exports = Memory;

@@ -1,10 +1,10 @@
-import memory from './memory';
+import Memory from './memory';
 
 class Array {
   constructor(){
     this.length = 0;
     this._capacity = 0;
-    this.ptr = memory.allocate(this.length);
+    this.ptr = Memory.allocate(this.length);
   }
 
   push(value){
@@ -61,6 +61,7 @@ class Array {
       throw new Error('Index error')
     }
     memory.copy(this.ptr + index, this.ptr + index + 1, this.length - index - 1)
+    this.length--;
   }
 }
 Array.SIZE_RATIO = 3;
